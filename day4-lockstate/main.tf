@@ -63,6 +63,6 @@ resource "aws_instance" "bastion" {
   key_name      = aws_key_pair.bastion_keypair.key_name
 
   tags = {
-    Name = "bastion-host"
+    Name = "bastion-host-server"
   }
 }
