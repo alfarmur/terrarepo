@@ -56,7 +56,7 @@ resource "aws_security_group" "bastion_sg" {
 
 # Create the Bastion EC2 instance
 resource "aws_instance" "bastion" {
-  ami           = "ami-0c02fb55956c7d316"  # Amazon Linux 2 (us-east-1)
+  ami           = "ami-0bdd88bd06d16ba03"  # Amazon Linux 2 (us-east-1)
   instance_type = "t2.micro"
   subnet_id     = data.aws_subnets.default.ids[0]
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
