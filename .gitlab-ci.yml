@@ -12,7 +12,11 @@ terraform-init:
   script:
     - cd basic
     - terraform init
-  when: manual
+  when: on_success        # MUST run automatically (default)
+  artifacts:
+    paths:
+      - basic/.terraform/
+      - basic/.terraform.lock.hcl
 
 terraform-plan:
   stage: plan
@@ -20,7 +24,7 @@ terraform-plan:
     - cd basic
     - terraform plan
   needs: ["terraform-init"]
-  when: manual
+  when: manual            # You trigger manually
 
 terraform-apply:
   stage: apply
@@ -28,4 +32,4 @@ terraform-apply:
     - cd basic
     - terraform apply -auto-approve
   needs: ["terraform-plan"]
-  when: manual
+  when: manual            # You trigger manually
