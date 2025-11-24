@@ -1,3 +1,5 @@
+image: hashicorp/terraform:latest
+
 stages:
   - init
   - plan
