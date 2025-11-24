@@ -1,0 +1,24 @@
+stages:
+  - init
+  - plan
+  - apply
+
+terraform-init:
+  stage: init
+  script:
+    - cd basic
+    - terraform init
+
+terraform-plan:
+  stage: plan
+  script:
+    - cd basic
+    - terraform plan
+  needs: ["terraform-init"]
+
+terraform-apply:
+  stage: apply
+  script:
+    - cd basic
+    - terraform apply -auto-approve
+  needs: ["terraform-plan"]
