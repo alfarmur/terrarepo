@@ -1,5 +1,5 @@
 data "aws_route53_zone" "main" {
-  name         = "132501409694.realhandsonlabs.net"
+  name         = "187296253949.realhandsonlabs.net"
   private_zone = false
 }
 # Frontend ALB Route53 alias
