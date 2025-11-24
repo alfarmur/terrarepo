@@ -8,14 +8,14 @@ stages:
 terraform-init:
   stage: init
   script:
-    - cd "basic terra"
+    - cd "basic"
     - terraform init
   when: manual
 
 terraform-plan:
   stage: plan
   script:
-    - cd "basic terra"
+    - cd "basic"
     - terraform plan
   needs: ["terraform-init"]
   when: manual
@@ -23,7 +23,7 @@ terraform-plan:
 terraform-apply:
   stage: apply
   script:
-    - cd "basic terra"
+    - cd "basic"
     - terraform apply -auto-approve
   needs: ["terraform-plan"]
   when: manual
