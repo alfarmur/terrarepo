@@ -15,6 +15,7 @@ terraform-plan:
     - cd basic
     - terraform plan
   needs: ["terraform-init"]
+  when: manual   # <-- Manual plan
 
 terraform-apply:
   stage: apply
@@ -22,3 +23,4 @@ terraform-apply:
     - cd basic
     - terraform apply -auto-approve
   needs: ["terraform-plan"]
+  when: manual   # <-- Manual apply
