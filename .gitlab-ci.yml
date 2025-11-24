@@ -1,6 +1,6 @@
 image:
   name: hashicorp/terraform:latest
-  entrypoint: [""]
+  entrypoint: ["/bin/sh", "-c"]
 
 stages:
   - init
@@ -14,7 +14,7 @@ terraform-init:
     - terraform init
   artifacts:
     paths:
-      - basic/.terraform
+      - basic/.terraform/
       - basic/.terraform.lock.hcl
     expire_in: 1 hour
   when: on_success
