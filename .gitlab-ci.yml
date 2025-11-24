@@ -1,6 +1,6 @@
 image:
   name: hashicorp/terraform:latest
-  entrypoint: ["/bin/sh", "-c"]   # <-- IMPORTANT
+  entrypoint: [""]
 
 stages:
   - init
@@ -12,24 +12,29 @@ terraform-init:
   script:
     - cd basic
     - terraform init
-  when: on_success        # MUST run automatically (default)
   artifacts:
     paths:
-      - basic/.terraform/
+      - basic/.terraform
       - basic/.terraform.lock.hcl
+    expire_in: 1 hour
+  when: on_success
 
 terraform-plan:
   stage: plan
   script:
     - cd basic
     - terraform plan
-  needs: ["terraform-init"]
-  when: manual            # You trigger manually
+  needs:
+    - job: terraform-init
+      artifacts: true
+  when: manual
 
 terraform-apply:
   stage: apply
   script:
     - cd basic
     - terraform apply -auto-approve
-  needs: ["terraform-plan"]
-  when: manual            # You trigger manually
+  needs:
+    - job: terraform-plan
+      artifacts: true
+  when: manual
